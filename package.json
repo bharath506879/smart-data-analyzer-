@@ -1,0 +1,40 @@
+{
+  "name": "smart-data-analyzer",
+  "version": "1.0.0",
+  "description": "A powerful, browser-based data analysis and machine learning platform for cleaning, analyzing, and preparing datasets for ML models.",
+  "main": "analyzer.html",
+  "scripts": {
+    "serve": "python -m http.server 8000",
+    "serve:node": "npx http-server",
+    "deploy": "echo 'Deploy to GitHub Pages or hosting platform of choice'"
+  },
+  "keywords": [
+    "data-analysis",
+    "eda",
+    "machine-learning",
+    "data-cleaning",
+    "csv-processor",
+    "visualization",
+    "browser-based",
+    "analytics",
+    "data-science"
+  ],
+  "author": "Bharath",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bharath506879/smart-data-analyzer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bharath506879/smart-data-analyzer/issues"
+  },
+  "homepage": "https://github.com/bharath506879/smart-data-analyzer#readme",
+  "dependencies": {
+    "chart.js": "^3.9.1",
+    "papaparse": "^5.4.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
