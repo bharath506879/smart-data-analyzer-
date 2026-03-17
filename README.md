@@ -61,7 +61,7 @@ Simulate predictions using four algorithmic models:
    ```
 
 2. **Open in browser**
-   - Simply double-click `analyzer.html` to open locally, or
+   - Simply double-click `index.html` to open locally, or
    - Serve via a local HTTP server:
      ```bash
      python -m http.server 8000
@@ -70,8 +70,43 @@ Simulate predictions using four algorithmic models:
      ```
 
 3. **Access the application**
-   - Local: `file:///path/to/analyzer.html` or `http://localhost:8000`
-   - GitHub Pages: Deploy and enable Pages in your repository settings
+   - Local: `http://localhost:8000` (recommended)
+   - Direct file: `file:///path/to/index.html` (limited functionality)
+
+### Deploying to Netlify (Recommended)
+
+1. **Push to GitHub**:
+   ```bash
+   git push origin main
+   ```
+
+2. **Connect to Netlify**:
+   - Go to [Netlify](https://netlify.com)
+   - Click "New site from Git"
+   - Select your GitHub repository
+   - Netlify will auto-detect `netlify.toml` configuration
+   - Deploy!
+
+3. **Your app is live!** 🚀
+   - URL: `https://your-site-name.netlify.app`
+
+### Alternative Deployment Options
+
+**GitHub Pages**:
+```bash
+# Push to main branch
+git push origin main
+# Enable Pages in Settings → Pages → Source: Deploy from a branch
+```
+
+**Vercel**:
+- Import GitHub repo at https://vercel.com
+- Auto-deploys on every push
+
+**AWS S3 + CloudFront**:
+- Upload `index.html` to S3 bucket
+- Configure index document: `index.html`
+- Create CloudFront distribution
 
 ## Usage Workflow
 
@@ -94,20 +129,27 @@ Simulate predictions using four algorithmic models:
 - Formula: `(value - min) / (max - min)`
 - Ensures uniform feature weights in ML models
 
-## Deployment Options
+## Deployment Configuration
 
-### Static Hosting
-- **GitHub Pages**: Push to repository and enable Pages
-- **Netlify**: Connect GitHub repo, auto-deploying on pushes
-- **Vercel**: Deploy with one-click from GitHub
-- **AWS S3 + CloudFront**: For scalable CDN distribution
-- **Traditional Web Servers**: Apache, Nginx (copy HTML file to public folder)
+### Pre-configured for:
+- ✅ **Netlify** - Auto-detects `netlify.toml` | Includes security headers & redirects
+- ✅ **GitHub Pages** - Works with static hosting
+- ✅ **Vercel** - Compatible with import flow
+- ✅ **Apache/Traditional Servers** - `.htaccess` handles routing
+- ✅ **Nginx & other servers** - Serve as static site
 
-### No Special Requirements
+### Key Configuration Files:
+- `netlify.toml` - Netlify deployment & security headers
+- `_redirects` - URL routing for Netlify
+- `.htaccess` - Apache server routing & caching
+- `package.json` - Project metadata
+
+### No Special Requirements:
 - No backend server needed
 - No database required
-- Fully client-side processing
-- Privacy-first: All data stays in the browser
+- Fully client-side processing (100% private)
+- Works offline after initial load
+- All data stays in the browser
 
 ## Browser Compatibility
 
@@ -120,13 +162,45 @@ Simulate predictions using four algorithmic models:
 
 ```
 smart-data-analyzer/
-├── analyzer.html      # Main application (all-in-one)
+├── index.html         # Main application (entry point)
+├── analyzer.html      # Alternative access (same content as index.html)
+├── netlify.toml       # Netlify deployment configuration
+├── _redirects         # Netlify URL routing rules
+├── .htaccess          # Apache server routing rules
+├── package.json       # Project metadata and dependencies
 ├── README.md          # This file
-├── LICENSE            # License information
+├── LICENSE            # MIT License
 └── .gitignore         # Git ignore rules
 ```
 
-## Key Algorithms
+## Troubleshooting
+
+### 404 Error on Netlify/Deployment
+**Problem**: "Page not found" after deployment
+
+**Solution**: 
+- ✅ The application now uses `index.html` as the entry point (automatically served)
+- ✅ `netlify.toml` has routing rules configured
+- ✅ `_redirects` file ensures all routes redirect to index.html
+- Simply push the updated code:
+  ```bash
+  git add .
+  git commit -m "Fix: Update deployment configuration"
+  git push origin main
+  ```
+- Netlify will automatically redeploy with the correct routing
+
+### Application Not Loading
+- Clear browser cache (Ctrl+Shift+Delete)
+- Try incognito/private window
+- Check browser console (F12) for errors
+- Ensure JavaScript is enabled
+
+### CSV Upload Not Working
+- Verify CSV file is properly formatted
+- Check file size (should be < 10MB)
+- Try with demo data first to test pipeline
+- Check browser console for parsing errors
 
 ### Z-Score Anomaly Detection
 ```
